@@ -1,0 +1,25 @@
+.btn {
+    $self: &;
+    display:inline-flex;
+    align-items:center;
+    background:none;
+    font-weight:700;
+    letter-spacing:1px;
+    font-size:13px;
+    padding:11px 24px;
+    text-transform:uppercase;
+    cursor:pointer;
+    border:none;
+    border-radius:2px;
+    &--fill {
+        &#{$self}--primary {
+            background-color:$primary;
+            color:$white;
+        }
+    }
+    &--text {        
+        &#{$self}--primary {
+            color:$primary;
+        }
+    }
+}

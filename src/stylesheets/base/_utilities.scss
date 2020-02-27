@@ -1,0 +1,34 @@
+@each $spacer-size-key, $spacer-size-value in $spacer-sizes {
+    @each $spacer-type-key, $spacer-type-value in $spacer-types {    
+        .#{$spacer-type-key}l-#{$spacer-size-key} {
+            #{$spacer-type-value}-left: $spacer-size-value;
+        }
+        .#{$spacer-type-key}r-#{$spacer-size-key} {
+            #{$spacer-type-value}-right: $spacer-size-value;
+        }
+        .#{$spacer-type-key}t-#{$spacer-size-key} {
+            #{$spacer-type-value}-top: $spacer-size-value;
+        }
+        .#{$spacer-type-key}b-#{$spacer-size-key} {
+            #{$spacer-type-value}-bottom: $spacer-size-value;
+        }
+        .#{$spacer-type-key}x-#{$spacer-size-key} {
+            #{$spacer-type-value}-right: $spacer-size-value;
+            #{$spacer-type-value}-left: $spacer-size-value;
+        }
+        .#{$spacer-type-key}y-#{$spacer-size-key} {
+            #{$spacer-type-value}-bottom: $spacer-size-value;
+            #{$spacer-type-value}-top: $spacer-size-value;
+        }
+        .#{$spacer-type-key}-#{$spacer-size-key} {
+            #{$spacer-type-value}-bottom: $spacer-size-value;
+            #{$spacer-type-value}-top: $spacer-size-value;
+            #{$spacer-type-value}-right: $spacer-size-value;
+            #{$spacer-type-value}-left: $spacer-size-value;
+        }
+    }
+}
+
+.font-weight-semibold {
+    font-weight:500;
+}
