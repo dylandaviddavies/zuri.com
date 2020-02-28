@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   useParams
@@ -9,7 +9,7 @@ import Header from './Header';
 import JobViewer from './JobViewer';
 export default function App() {
   return (
-    <Router basename={`${process.env.PUBLIC_URL}/`}>
+    <Router>
       <div>
         <Header />
         <Switch>
