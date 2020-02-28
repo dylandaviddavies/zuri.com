@@ -9,7 +9,7 @@ import Header from './Header';
 import JobViewer from './JobViewer';
 export default function App() {
   return (
-    <Router>
+    <Router basename={`${process.env.PUBLIC_URL}/`}>
       <div>
         <Header />
         <Switch>
