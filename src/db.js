@@ -52,7 +52,7 @@ var jobs = [
         description: `
             <div>
                 <div class="mb-4">
-                    <div className="font-weight-semibold mb-2">
+                    <div class="font-weight-semibold mb-2">
                         Join the world's largest social network today!
                     </div>
                     <p>
