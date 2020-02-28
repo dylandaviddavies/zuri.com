@@ -8,7 +8,9 @@ export default function Header() {
   return (
     <header className="header">
         <div className="header__content">
-            <img className="header__img" src={logo} alt="Zuri" />
+            <Link to="/">
+                <img className="header__img" src={logo} alt="Zuri" />
+            </Link>
             <div className="header__search">
                 <i className="material-icons header__search__icon" aria-hidden="true">search</i>
                 <input className="header__search__input" type="text" placeholder="Search for jobs" />
