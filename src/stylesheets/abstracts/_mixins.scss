@@ -1,0 +1,17 @@
+@mixin custom-scrollbar {  
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      &:vertical {
+        width: 11px;
+      }
+      &-thumb {
+        border-radius: 8px;
+        border: 2px solid $white;
+        background-color: $scrollbar-color;
+      }
+      &-track { 
+        background-color: $white; 
+        border-radius: 8px; 
+      }
+    }
+  }

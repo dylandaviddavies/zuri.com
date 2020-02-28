@@ -6,7 +6,7 @@ import {
 
 export default function Header() {
   return (
-    <header class="header">
+    <header className="header">
         <div className="header__content">
             <img className="header__img" src={logo} alt="Zuri" />
             <div className="header__search">

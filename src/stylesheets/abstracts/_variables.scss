@@ -2,6 +2,7 @@ $primary: #4CBD94;
 $grey: #979797;
 $white: #fff;
 $light: #b5b5b5;
+$scrollbar-color: $light;
 
 $spacer-base: 4px;
 $spacer-sizes: (auto: auto);
@@ -9,6 +10,6 @@ $spacer-types: (
     p: "padding",
     m: "margin"
 );
-@for $i from 1 to 8 {
+@for $i from 1 to 12 {
     $spacer-sizes: map-merge($spacer-sizes, ($i : $i * $spacer-base));
 }
