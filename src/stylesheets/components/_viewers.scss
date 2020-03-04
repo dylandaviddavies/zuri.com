@@ -3,6 +3,15 @@
     margin: 0 auto;
     max-width: 1300px;
     display:flex;
+    &__load-more {
+        text-align:center;
+        display:block;
+        color: $primary;
+        border:none;
+        width:100%;
+        background:#fff;
+        padding: 16px;
+    }
     &__items,&__content {
         max-height: 60vh;
         overflow-y:auto;

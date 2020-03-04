@@ -6,12 +6,13 @@ var jobs = db.jobs;
 export default class JobViewer extends React.Component {
   constructor(props){
     super(props);    
-    let jobId = this.props.activeJobId;
-    if ( jobId == null )
-      jobId = jobs.map(j => j.id).find(j => true);
+    const {
+      activeJobId = jobs.map(j => j.id).find(j => true),
+    } = props;
+    this.baseLimit = 5;
     this.state = {
-      jobs : jobs,
-      activeJobId: jobId
+      activeJobId,
+      limit: this.baseLimit
     };
   }
   componentDidUpdate(){    
@@ -19,33 +20,53 @@ export default class JobViewer extends React.Component {
       this.setState({ activeJobId: this.props.activeJobId });
     }
   }
+  renderJobs(){
+    return jobs.slice(0,this.state.limit).map((job, i) => {
+      return <li key={job.id}>
+        <JobViewerItem                     
+          id={job.id}
+          employer={job.employer.title}
+          img={job.employer.img} 
+          active={this.activeJob.id === job.id}
+          location={job.location}
+          title={job.title} />
+      </li>
+    });
+  }
+  loadMore(){
+    this.setState({
+      limit: this.state.limit + this.baseLimit
+    });
+  }
+  renderLoadMoreButton(){
+    if (this.state.limit > jobs.length)
+      return null;
+    return (
+      <li>
+        <button class="job-viewer__load-more" onClick={this.loadMore.bind(this)}>
+          Load more
+        </button>
+      </li>
+    );
+  }
   render(){
-    var activeJob = this.state.jobs.find(j => j.id == this.state.activeJobId);
-    if ( activeJob == null || activeJob.id == null )
-      activeJob = this.state.jobs.find(j => true);
+    this.activeJob = jobs.find(j => j.id == this.state.activeJobId);
+    if ( this.activeJob == null || this.activeJob.id == null )
+      this.activeJob = jobs.find(j => true);
     return (
       <div className="job-viewer">
           <div className="job-viewer__items">
             <ul>
-              {this.state.jobs.map((job, i) => {
-                return <li key={job.id}>
-                  <JobViewerItem                     
-                    id={job.id}
-                    employer={job.employer.title}
-                    img={job.employer.img} 
-                    active={activeJob.id === job.id}
-                    location={job.location}
-                    title={job.title} />
-                </li>
-              })}
+              {this.renderJobs()}
+              {this.renderLoadMoreButton()}
             </ul>
           </div>
           <JobViewerContent 
-            title={activeJob.title} 
-            employer={activeJob.employer.title} 
-            description={activeJob.description} 
-            location={activeJob.location}
-            img={activeJob.employer.img} />
+            title={this.activeJob.title} 
+            employer={this.activeJob.employer.title} 
+            description={this.activeJob.description} 
+            location={this.activeJob.location}
+            img={this.activeJob.employer.img} />
       </div>
     );
   }

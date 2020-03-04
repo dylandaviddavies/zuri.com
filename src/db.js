@@ -27,12 +27,17 @@ var amazon = {
     id: "6",
     img: "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/62c36898c1fccfb889efeb7ccefb50b7",
     title: "Amazon"
-}
+};
 var rbc = {
     id: "7",
     img: "https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/RBC_Royal_Bank.svg/1200px-RBC_Royal_Bank.svg.png",
     title: "RBC"
-}
+};
+var yelp = {
+    id: "8",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1200px-Yelp_Logo.svg.png",
+    title: "Yelp"
+};
 var employers = [
     facebook,
     google,
@@ -40,7 +45,8 @@ var employers = [
     oracle,
     scotiabank,
     amazon,
-    rbc
+    rbc,
+    yelp
 ];
 
 var jobs = [
@@ -305,6 +311,15 @@ var jobs = [
             <p>
                 Amazon is an Equal Opportunity-Affirmative Action Employer Minority / Female / Disability / Veteran / Gender Identity / Sexual Orientation
             </p>
+        `
+    },
+    {
+        id: "8",
+        title: "Front-end Engineer",
+        location: "Toronto, ON",
+        employer: yelp,
+        description: `
+
         `
     }
 ];
