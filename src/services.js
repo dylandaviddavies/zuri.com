@@ -1,43 +1,55 @@
-var facebook = {
-    id: "1",
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
-    title: "Facebook"
-};
-var google = {
-    id: "2",
-    img: "https://www.stickpng.com/assets/images/5847f9cbcef1014c0b5e48c8.png",
-    title: "Google"
-};
-var orbis = {
-    id: "3",
-    img: "https://orbiscommunications.com/wp-content/uploads/2019/11/ORBIS-ICON-BLACK.png",
-    title: "Orbis Communications"
-};
-var oracle = {
-    id: "4",
-    img: "https://www.neotys.com/wp-content/uploads/2018/06/oracle-logo.png",
-    title: "Oracle"
-};
-var scotiabank = {
-    id: "5",
-    img: "https://www.underconsideration.com/brandnew/archives/scotiabank_icon.png",
-    title: "Scotiabank"
-};
-var amazon = {
-    id: "6",
-    img: "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/62c36898c1fccfb889efeb7ccefb50b7",
-    title: "Amazon"
-};
-var rbc = {
-    id: "7",
-    img: "https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/RBC_Royal_Bank.svg/1200px-RBC_Royal_Bank.svg.png",
-    title: "RBC"
-};
-var yelp = {
-    id: "8",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1200px-Yelp_Logo.svg.png",
-    title: "Yelp"
-};
+// mock application data
+
+class Employer{
+    constructor(id, img, title){
+        this.id = id;
+        this.img = img;
+        this.title = title;
+    }
+    like(q){
+        return this.title.toLowerCase().includes(q.toLowerCase());
+    }
+}
+var facebook = new Employer(
+    "1",
+    "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    "Facebook"
+);
+var google = new Employer(
+    "2",
+    "https://www.stickpng.com/assets/images/5847f9cbcef1014c0b5e48c8.png",
+    "Google"
+);
+var orbis = new Employer(
+    "3",
+    "https://orbiscommunications.com/wp-content/uploads/2019/11/ORBIS-ICON-BLACK.png",
+    "Orbis Communications"
+);
+var oracle = new Employer(
+    "4",
+    "https://www.neotys.com/wp-content/uploads/2018/06/oracle-logo.png",
+    "Oracle"
+);
+var scotiabank = new Employer(
+    "5",
+    "https://www.underconsideration.com/brandnew/archives/scotiabank_icon.png",
+    "Scotiabank"
+);
+var amazon = new Employer(
+    "6",
+    "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/62c36898c1fccfb889efeb7ccefb50b7",
+    "Amazon"
+);
+var rbc = new Employer(
+    "7",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/RBC_Royal_Bank.svg/1200px-RBC_Royal_Bank.svg.png",
+    "RBC"
+);
+var yelp = new Employer(
+    "8",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1200px-Yelp_Logo.svg.png",
+    "Yelp"
+);
 var employers = [
     facebook,
     google,
@@ -48,14 +60,27 @@ var employers = [
     rbc,
     yelp
 ];
+class Job {
+    constructor(id, title, employer, locale, description){
+        this.id = id;
+        this.title = title;
+        this.employer = employer;
+        this.locale = locale;
+        this.description = description;
+    }
+    like(q) {
+        return this.title.toLowerCase().includes(q.toLowerCase())
+            || this.employer.like(q);
+    }
+}
 
 var jobs = [
-    {
-        id: "1",
-        title: "React Developer",
-        employer: facebook,
-        location: "Toronto, ON",
-        description: `
+    new Job(
+        "1",
+        "React Developer",
+        facebook,
+        "Toronto, ON",
+        `
             <div>
                 <div class="mb-4">
                     <div class="font-weight-semibold mb-2">
@@ -92,13 +117,13 @@ var jobs = [
                 </div>
             </div>
         `
-    },
-    {
-        id: "2",
-        title: ".NET Developer",
-        employer: orbis,
-        location: "Hamilton, ON",
-        description: `
+    ),
+    new Job(
+        "2",
+        ".NET Developer",
+        orbis,
+        "Hamilton, ON",
+        `
             <p class="mb-4">
                 Architect, design and develop company ecommerce website to increase sales transaction through website, working with other platforms to develop new features and provide support for sales organization on company website.
             </p>
@@ -117,13 +142,13 @@ var jobs = [
                 </ul>
             </div>
         `
-    },
-    {
-        id: "4",
-        title: "Java Developer",
-        employer: rbc,
-        location: "Toronto, ON",
-        description: `
+    ),
+    new Job(
+        "4",
+        "Java Developer",
+        rbc,
+        "Toronto, ON",
+        `
             <div class="mb-4">
                 <div class="mb-2 font-weight-semibold">What is the opportunity?</div>
                 <p>
@@ -168,13 +193,13 @@ var jobs = [
                 </ul>
             </div>
         `
-    },
-    {
-        id: "5",
-        title: "Software Developer",
-        employer: google,
-        location: "Markham, ON",
-        description: `
+    ),
+    new Job(
+        "5",
+        "Software Developer",
+        google,
+        "Markham, ON",
+        `
             <p class="mb-4">
                 Google's software engineers develop the next-generation technologies that change how billions of users connect, explore, and interact with information and one another. Our products need to handle information at massive scale, and extend well beyond web search. We're looking for engineers who bring fresh ideas from all areas, including information retrieval, distributed computing, large-scale system design, networking and data storage, security, artificial intelligence, natural language processing, UI design and mobile; the list goes on and is growing every day. As a software engineer, you will work on a specific project critical to Google’s needs with opportunities to switch teams and projects as you and our fast-paced business grow and evolve. We need our engineers to be versatile, display leadership qualities and be enthusiastic to take on new problems across the full-stack as we continue to push technology forward.
             </p>
@@ -185,13 +210,13 @@ var jobs = [
                 Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to take on some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another
             </p>
         `
-    },
-    {
-        id: "6",
-        title: "Java Developer",
-        employer: scotiabank,
-        location: "Toronto, ON",
-        description: `
+    ),
+    new Job(
+        "6",
+        "Java Developer",
+        scotiabank,
+        "Toronto, ON",
+        `
             <p class="mb-4 font-weight-semibold">
                 Join the Global Community of Scotiabankers to help customers become better off.
             </p>
@@ -262,13 +287,13 @@ var jobs = [
                 </ul>
             </div>
         `
-    },
-    {
-        id: "7",
-        title: "DevOps Engineer",
-        location: "Toronto, ON",
-        employer: amazon,
-        description: `
+    ),
+    new Job(
+        "7",
+        "DevOps Engineer",
+        amazon,
+        "Toronto, ON",
+        `
             <p class="mb-4">
                 The Amazon Fulfillment Technologies Support Team is looking for a DevOps engineer who will join the team which supports all software application responsible for shipment, item availability, customer promises, shipment optimization and other functions related to fulfillment services process.
             </p>
@@ -312,19 +337,100 @@ var jobs = [
                 Amazon is an Equal Opportunity-Affirmative Action Employer Minority / Female / Disability / Veteran / Gender Identity / Sexual Orientation
             </p>
         `
-    },
-    {
-        id: "8",
-        title: "Front-end Engineer",
-        location: "Toronto, ON",
-        employer: yelp,
-        description: `
-
+    ),
+    new Job(
+        "8",
+        "Front-end Engineer",
+        yelp,
+        "Toronto, ON",
         `
-    }
+            <div class="mb-4">
+                <div class="mb-1 font-weight-semibold">
+                    Summary
+                </div>
+                <p>
+                    Are you interested in leading the direction of the web platform for all of Yelp, and helping us adopt open source software like React and GraphQL to suit our needs? Our team supports the engineers who are providing the best user experience to millions of users! We create tooling, set best practices, and define web architecture patterns that scale. Our goal is to enable quick and effortless web development. We routinely tackle hard challenges and care deeply about efficient web infrastructure.  
+                </p>
+                <p>
+                    Yelp engineering culture is driven by our values: we’re a cooperative team that values individual authenticity and encourages “unboring” solutions to problems. We enable all new engineers to deploy working code their first week, and your impact will only grow from there with the support of your manager, mentor, and team. At the end of the day, we are all about helping our users, growing as engineers, and having fun in a collaborative environment.
+                </p>
+            </div>
+            <div class="mb-4">
+                <div class="mb-1 font-weight-semibold">
+                    What You Will Do:
+                </div>
+                <ul>
+                    <li>
+                        Design and build scalable web tooling/infrastructure/architecture to support our full stack engineers.
+                    </li>
+                    <li>
+                        Own engineering projects from design to implementation to deployment and maintenance.
+                    </li>
+                    <li>
+                        Work with a wide range of systems, processes and technologies to own and solve problems from end-to-end.
+                    </li>
+                    <li>
+                        Promote cross-team awareness to optimize code-sharing and decrease time to market as a key member of the larger Javascript developer community at Yelp.
+                    </li>
+                    <li>
+                        Help establish roadmap and architecture based on technology and Yelp’s needs.
+                    </li>
+                    <li>
+                        Write clear and concise technical documentation on system designs and implementation.
+                    </li>
+                    <li>
+                        Mentor other engineers and share the skills you’ve learned.
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="mb-1 font-weight-semibold">
+                    We Are Looking For:
+                </div>
+                <ul>                
+                    <li>
+                        Extensive experience with JavaScript, HTML and at least one front-end framework, preferably React.
+                    </li>
+                    <li>
+                        Experience with modern web tooling; Webpack, Babel, Jest, Enzyme.
+                    </li>
+                    <li>
+                        Experience with Unix systems.
+                    </li>
+                    <li>
+                        Excellent written and verbal communication skills.
+                    </li>
+                    <li>
+                        Ability to own a team project from scoping to implementation.
+                    </li>
+                    <li>
+                        Responsiveness to changing needs of the business and ability to craft solutions that solve complex business problems.
+                    </li>
+                    <li>
+                        Experience making incremental changes to large code bases.
+                    </li>
+                    <li>
+                    2+ years of relevant industry experience.
+                    </li>
+                </ul>
+            </div>
+        `
+    )
 ];
 
-export default {
-    jobs,
-    employers
+export default class JobsService{
+    load(id){
+        return jobs.find(i => i.id === id);
+    }
+    fetch(options) {
+        var results = jobs;
+        if (options.query != null && options.query.trim() !== '')
+            results = jobs.filter(i => i.like(options.query));
+        let start = (options.page - 1) * options.itemsPerPage;
+        let end = options.page * options.itemsPerPage;
+        return {
+            done: results.length <= end,
+            results: results.slice(start, end)
+        };
+    }
 }

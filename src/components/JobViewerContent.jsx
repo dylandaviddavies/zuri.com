@@ -5,14 +5,13 @@ export default class JobViewerContent extends React.Component {
       return { __html: this.props.description };
     }
     render(){
-        var props = this.props;
         return (
             <div className="job-viewer__content">
                 <div className="job-viewer__content__header">
                     <img className="job-viewer__content__img" src={this.props.img} />
                     <div>
                         <h3 className="job-viewer__content__title">{this.props.title}</h3>
-                        <span className="job-viewer__content__subtitle">{this.props.employer} • {this.props.location}</span>
+                        <span className="job-viewer__content__subtitle">{this.props.employer} • {this.props.locale}</span>
                     </div>
                     <div className="ml-auto">
                         <button className="btn btn--text btn--secondary">

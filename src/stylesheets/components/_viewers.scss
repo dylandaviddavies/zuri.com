@@ -3,7 +3,8 @@
     margin: 0 auto;
     max-width: 1300px;
     display:flex;
-    &__load-more {
+    align-items:flex-start;
+    &__fetch {
         text-align:center;
         display:block;
         color: $primary;
@@ -13,7 +14,7 @@
         padding: 16px;
     }
     &__items,&__content {
-        max-height: 60vh;
+        max-height: 74vh;
         overflow-y:auto;
         @include custom-scrollbar;
     }
@@ -46,7 +47,7 @@
             color:$light;
             font-size:13px;
         }
-        &__location {
+        &__locale {
             display:block;
             font-weight:normal;
             color:$light;

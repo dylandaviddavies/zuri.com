@@ -1,73 +1,137 @@
 import React from "react";
-import JobViewerItem from './JobViewerItem';
+import JobViewerItems from './JobViewerItems';
 import JobViewerContent from './JobViewerContent';
-import db from '../db';
-var jobs = db.jobs;
+import EmptyJobViewerContent from './EmptyJobViewerContent';
+import JobsService from '../services';
+var jobsService = new JobsService();
 export default class JobViewer extends React.Component {
+
+  /*
+    Lifecycle methods
+  */
   constructor(props){
-    super(props);    
-    const {
-      activeJobId = jobs.map(j => j.id).find(j => true),
-    } = props;
-    this.baseLimit = 5;
+    super(props);
     this.state = {
-      activeJobId,
-      limit: this.baseLimit
+      page: 1,
+      query: this.props.query,
+      items: [],
+      activeItemId: this.props.activeItemId,
+      doneFetching: false,
+      location: this.props.location,
+      activeItem: null
     };
   }
-  componentDidUpdate(){    
-    if (this.state.activeJobId !== this.props.activeJobId) {
-      this.setState({ activeJobId: this.props.activeJobId });
+  componentDidUpdate(prevProps){
+    if (this.state.activeItemId !== this.props.activeItemId && prevProps.activeItemId !== this.props.activeItemId){
+      this.setState({
+        activeItemId: this.props.activeItemId
+      }, () => this.loadItemContent());
+    }
+    if (this.state.location !== this.props.location) {
+        this.setState({
+            location: this.props.location
+        });
+    }
+    if(this.state.query !== this.props.query) {
+      let activeItemId = this.state.activeItemId;
+      if (this.props.activeItemId == null || this.props.activeItemId.trim() === '')
+        activeItemId = null;
+      this.setState({
+        query: this.props.query,
+        activeItemId: activeItemId
+      }, () => this.reloadItems(() => this.loadItemContent()));      
     }
   }
-  renderJobs(){
-    return jobs.slice(0,this.state.limit).map((job, i) => {
-      return <li key={job.id}>
-        <JobViewerItem                     
-          id={job.id}
-          employer={job.employer.title}
-          img={job.employer.img} 
-          active={this.activeJob.id === job.id}
-          location={job.location}
-          title={job.title} />
-      </li>
-    });
+  componentDidMount(){
+    this.loadItems(() => this.loadItemContent());
   }
-  loadMore(){
-    this.setState({
-      limit: this.state.limit + this.baseLimit
-    });
+
+  /*
+    Render methods
+  */
+  renderItems(){
+    if (this.state.items.length == 0)
+      return null;
+    return (
+      <div className="job-viewer__items">
+        <ul>
+          <JobViewerItems location={this.state.location} items={this.state.items} activeItemId={this.state.activeItemId} />
+          {this.renderFetchButton()}
+        </ul>
+      </div>
+    );
   }
-  renderLoadMoreButton(){
-    if (this.state.limit > jobs.length)
+  renderFetchButton(){
+    if (this.state.doneFetching)
       return null;
     return (
       <li>
-        <button class="job-viewer__load-more" onClick={this.loadMore.bind(this)}>
+        <button className="job-viewer__fetch" onClick={this.fetch.bind(this)}>
           Load more
         </button>
       </li>
     );
   }
+  renderContent(){
+    if (!this.state.activeItem)
+      return (
+        <EmptyJobViewerContent />
+      );
+    return (<JobViewerContent 
+            title={this.state.activeItem.title} 
+            employer={this.state.activeItem.employer.title} 
+            description={this.state.activeItem.description} 
+            locale={this.state.activeItem.locale}
+            img={this.state.activeItem.employer.img} />);
+  }
   render(){
-    this.activeJob = jobs.find(j => j.id == this.state.activeJobId);
-    if ( this.activeJob == null || this.activeJob.id == null )
-      this.activeJob = jobs.find(j => true);
     return (
       <div className="job-viewer">
-          <div className="job-viewer__items">
-            <ul>
-              {this.renderJobs()}
-              {this.renderLoadMoreButton()}
-            </ul>
-          </div>
-          <JobViewerContent 
-            title={this.activeJob.title} 
-            employer={this.activeJob.employer.title} 
-            description={this.activeJob.description} 
-            location={this.activeJob.location}
-            img={this.activeJob.employer.img} />
+          {this.renderItems()}
+          {this.renderContent()}
       </div>
     );
+  }
+
+  /*
+    Modifier methods
+  */
+  reloadItems(callback){
+    this.setState({
+      page: 1,
+      doneFetching: false,
+      items: []
+    }, () => this.loadItems(callback)); 
+  }
+  loadItems(callback){    
+    let {results, done} = jobsService.fetch({
+      query: this.state.query,
+      page: this.state.page,
+      itemsPerPage: 6
+    });
+    this.setState({
+      items: this.state.items.concat(results),
+      doneFetching: done
+    }, callback);
+  }
+  fetch(){    
+    this.setState({
+      page: this.state.page + 1
+    }, () => this.loadItems());
+  }
+  loadItemContent(){
+    let id = this.state.activeItemId;
+    if (id == null){
+      let item = this.state.items.find(i => true);
+      if (item != null)
+        this.setState({
+          activeItemId: item.id
+        }, () => this.loadItemContent());
+    }
+    else {
+      this.setState({
+        activeItem: jobsService.load(id)
+      });
+    }
   }
 }

@@ -64,6 +64,8 @@
         width:50%;
         &__icon {
             position:absolute;
+            line-height:inherit;
+            padding:0;
             left:12px;
             font-weight:bold;
             color: $primary;
@@ -74,16 +76,51 @@
             align-items:center;
             background:none;
             border:none;
+            z-index:1;
         }
         &__input {
             width:100%;
             border-radius:3px;
-            border:2px solid $primary;
             box-sizing:border-box;
             padding: 12px 8px 10px 40px;
+            border:0;
+            box-shadow:inset 0 0 0 2px #f1f1f1;
             &::placeholder {
                 color: $primary;
             }
+        }
+        &:before,&:after {
+          box-sizing:border-box;
+          content:"";
+          width:0;
+          height:0;
+          position:absolute;
+          border: 2px solid transparent;
+          pointer-events:none;
+        }
+        &:before{    
+            top:0;
+            right:0;
+        }
+        &:after{            
+          bottom:0;
+          left:0;
+        }
+        &:hover{
+          &:before,&:after{
+            width:100%;
+            height:100%;
+          }
+          &:before{
+            border-bottom-color:$primary;
+            border-right-color:$primary;
+            transition: width .2s linear .2s, height .2s linear;     
+          }
+          &:after {
+            border-top-color:$primary;
+            border-left-color:$primary;
+            transition: width .2s linear .2s, height .2s linear;       
+          }
         }
     }
 }
