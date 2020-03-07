@@ -3,6 +3,7 @@ $grey: #979797;
 $white: #fff;
 $light: #b5b5b5;
 $scrollbar-color: $light;
+$black: #111;
 
 $spacer-base: 4px;
 $spacer-sizes: (auto: auto);
@@ -13,3 +14,11 @@ $spacer-types: (
 @for $i from 1 to 12 {
     $spacer-sizes: map-merge($spacer-sizes, ($i : $i * $spacer-base));
 }
+
+$breakpoints: (
+    xs: 0px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);

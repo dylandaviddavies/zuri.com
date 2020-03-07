@@ -23,7 +23,7 @@ class HeaderSearch extends React.Component {
     render(){
         return (
             <form onSubmit={this.onSubmit.bind(this)} className="header__search">
-                <button className="material-icons header__search__icon" aria-hidden="true">search</button>
+                <button className="material-icons-round header__search__icon" aria-hidden="true">search</button>
                 <input onChange={this.onQueryChange.bind(this)} className="header__search__input" type="text" placeholder="Search for jobs" />
             </form>
         );

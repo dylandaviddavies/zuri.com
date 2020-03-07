@@ -1,17 +1,35 @@
 @mixin custom-scrollbar {  
-    &::-webkit-scrollbar {
-      -webkit-appearance: none;
-      &:vertical {
-        width: 11px;
-      }
-      &-thumb {
-        border-radius: 8px;
-        border: 2px solid $white;
-        background-color: $scrollbar-color;
-      }
-      &-track { 
-        background-color: $white; 
-        border-radius: 8px; 
-      }
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    &:vertical {
+      width: 11px;
+    }
+    &-thumb {
+      border-radius: 8px;
+      border: 2px solid $white;
+      background-color: $scrollbar-color;
+    }
+    &-track { 
+      background-color: $white; 
+      border-radius: 8px; 
     }
   }
+}
+
+@mixin media-breakpoint-up($breakpoint) {
+  @media(min-width: map-get($breakpoints, $breakpoint)){
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  @media(max-width: map-get($breakpoints, $breakpoint)){
+    @content;
+  }
+}
+
+@mixin hover-focus-active {
+  &:hover,&:focus,&:active{
+    @content;
+  }
+}

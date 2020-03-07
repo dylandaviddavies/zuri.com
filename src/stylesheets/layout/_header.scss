@@ -2,16 +2,23 @@
     border-top:4px solid $primary;
     background-color:$white;
     &__content{
-        justify-content:space-between;
         display:flex;
         max-width: 1500px;
         margin: 0 auto;
         padding: 24px 12px;
+        @include media-breakpoint-up(lg){
+            justify-content:space-between;
+        }
+        justify-content:center;
         > * {
             margin: 0 12px;
         }
         align-items:center;
         &__nav {
+            @include media-breakpoint-up(lg){
+                display:block;
+            }
+            display:none;
             ul{
                 list-style-type:none;
                 margin:0;
@@ -30,11 +37,57 @@
             }
         }
     }
+    &__menu-btn{
+        @include media-breakpoint-up(lg){
+            display:none;
+        }
+        position:fixed;
+        top:32px;
+        left:12px;
+        background:none;
+        border:none;
+        z-index:100;
+        color: $grey;
+    }
+    &__account-btn{
+        @include media-breakpoint-up(lg){
+            display:none;
+        }
+        position:fixed;
+        top:33px;
+        right:12px;
+        background:none;
+        border:none;
+        color: $grey;
+        i.material-icons-round {
+            font-size:23px;            
+            font-weight:600;
+        }
+    }
+    &__search-btn{
+        @include media-breakpoint-up(lg){
+            display:none;
+        }
+        position:fixed;
+        top:33px;
+        right:54px;
+        background:none;
+        border:none;
+        color: $grey;
+        i.material-icons-round {
+            font-size:23px;            
+            font-weight:600;
+        }
+    }
     &__img {
         height:35px;
         display:block;
     }
     &__subheader {
+        @include media-breakpoint-up(lg){
+            display:block;
+        }
+        display:none;
         border-top: 1px solid #f1f1f1;
         border-bottom: 1px solid #f1f1f1;
         padding: 0 24px;
@@ -62,6 +115,10 @@
     &__search {
         position:relative;
         width:50%;
+        @include media-breakpoint-up(lg){
+            display:block;
+        }
+        display:none;
         &__icon {
             position:absolute;
             line-height:inherit;
