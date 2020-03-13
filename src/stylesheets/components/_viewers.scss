@@ -17,11 +17,6 @@
         background:#fff;
         padding: 16px;
     }
-    &__items,&__content {
-        max-height: 74vh;
-        overflow-y:auto;
-        @include custom-scrollbar;
-    }
     &__items {
         ul {
             margin:0;
@@ -31,11 +26,14 @@
         height:300px;
         width:100%;
         margin-bottom:16px;
+        overflow-y:auto;
+        @include custom-scrollbar;
         @include media-breakpoint-up(lg) {
             margin-bottom:0;
             height:auto;
             width:400px;
             min-width:400px;
+            max-height: 74vh;
         }
     }
     &__item { 
@@ -84,8 +82,11 @@
         max-width:100%;
         padding:24px 32px;
         margin-left:0;
+        overflow-y:auto;
+        @include custom-scrollbar;
         @include media-breakpoint-up(lg) {
             margin-left:12px;
+            max-height: 74vh;
         }
         &__title {
             font-size:24px;
