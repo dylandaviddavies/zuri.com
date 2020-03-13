@@ -36,6 +36,20 @@
 .d-flex{
     display:flex;
 }
+
+@each $d in $displays {
+    .d-#{$d} {
+        display: $d !important;
+    }
+    @each $k, $v in $breakpoints {
+        .d-#{$k}-#{$d} {
+            @include media-breakpoint-up($k) {
+                display: $d !important;
+            }
+        }    
+    }
+}
+
 .flex-column{
     flex-direction:column;
 }

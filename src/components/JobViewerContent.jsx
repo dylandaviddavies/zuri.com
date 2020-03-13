@@ -13,7 +13,7 @@ export default class JobViewerContent extends React.Component {
                         <h3 className="job-viewer__content__title">{this.props.title}</h3>
                         <span className="job-viewer__content__subtitle">{this.props.employer} • {this.props.locale}</span>
                     </div>
-                    <div className="ml-auto">
+                    <div className="d-none d-lg-block ml-auto">
                         <button className="btn btn--text btn--secondary">
                             Save
                         </button>
