@@ -2,6 +2,7 @@
     border-top:4px solid $primary;
     background-color:$white;
     &__content{
+        position:relative;
         display:flex;
         max-width: 1500px;
         margin: 0 auto;
@@ -41,8 +42,12 @@
         @include media-breakpoint-up(lg){
             display:none;
         }
-        position:fixed;
-        top:32px;
+        position:absolute;
+        top:0;
+        bottom:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
         left:12px;
         background:none;
         border:none;
@@ -53,8 +58,12 @@
         @include media-breakpoint-up(lg){
             display:none;
         }
-        position:fixed;
-        top:33px;
+        position:absolute;
+        top:0;
+        bottom:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
         right:12px;
         background:none;
         border:none;
@@ -68,8 +77,12 @@
         @include media-breakpoint-up(lg){
             display:none;
         }
-        position:fixed;
-        top:33px;
+        position:absolute;
+        top:0;
+        bottom:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
         right:54px;
         background:none;
         border:none;
