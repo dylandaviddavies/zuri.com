@@ -18,7 +18,8 @@ export default class JobViewer extends React.Component {
       activeItemId: this.props.activeItemId,
       doneFetching: false,
       location: this.props.location,
-      activeItem: null
+      activeItem: null,
+      totalItemsCount: 0
     };
   }
   componentDidUpdate(prevProps){
@@ -32,7 +33,7 @@ export default class JobViewer extends React.Component {
             location: this.props.location
         });
     }
-    if(this.state.query !== this.props.query) {
+    if (this.state.query !== this.props.query) {
       let activeItemId = this.state.activeItemId;
       if (this.props.activeItemId == null || this.props.activeItemId.trim() === '')
         activeItemId = null;
@@ -50,11 +51,17 @@ export default class JobViewer extends React.Component {
     Render methods
   */
   renderItems(){
-    if (this.state.items.length == 0)
-      return null;
     return (
-      <div className="job-viewer__items">
-        <ul>
+      <div className="job-viewer__results">
+        <div className="job-viewer__header d-flex align-items-center">
+          <div className="font-weight-semibold">{this.state.query || 'All'} Jobs ({this.state.totalItemsCount} Jobs Found)</div>
+          <button aria-label="Create job alert" title="Create job alert" className="ml-auto alert-btn">
+            <i aria-hidden="true" className="material-icons-round">
+              add_alert
+            </i>
+          </button>
+        </div>
+        <ul className="job-viewer__items">
           <JobViewerItems location={this.state.location} items={this.state.items} activeItemId={this.state.activeItemId} />
           {this.renderFetchButton()}
         </ul>
@@ -87,8 +94,8 @@ export default class JobViewer extends React.Component {
   render(){
     return (
       <div className="job-viewer">
-          {this.renderItems()}
-          {this.renderContent()}
+        {this.renderItems()}
+        {this.renderContent()}
       </div>
     );
   }
@@ -104,14 +111,15 @@ export default class JobViewer extends React.Component {
     }, () => this.loadItems(callback)); 
   }
   loadItems(callback){    
-    let {results, done} = jobsService.fetch({
+    let {results, done, totalCount} = jobsService.fetch({
       query: this.state.query,
       page: this.state.page,
       itemsPerPage: 6
     });
     this.setState({
       items: this.state.items.concat(results),
-      doneFetching: done
+      doneFetching: done,
+      totalItemsCount: totalCount
     }, callback);
   }
   fetch(){    

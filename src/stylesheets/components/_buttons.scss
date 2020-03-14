@@ -5,9 +5,6 @@
     color: inherit;
     background:none;
     font-weight:700;
-    letter-spacing:1px;
-    font-size:13px;
-    padding:11px 24px;
     text-transform:uppercase;
     cursor:pointer;
     border:none;
@@ -21,6 +18,50 @@
     &--text {        
         &#{$self}--primary {
             color:$primary;
+        }
+    }
+    &--outline {
+        &#{$self}--primary {
+            border: 2px solid $primary;
+            color:$primary;
+        }
+    }
+    // sizes
+    letter-spacing:1px;
+    padding:11px 24px;
+    font-size:13px;
+    &--sm {
+        letter-spacing:1px;
+        padding:4px 14px;
+        font-size:10px;
+    }
+}
+
+.alert-btn {
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    &:before {
+        border-radius:100%;
+        width:34px;
+        height:34px;
+        transition: transform .5s, border-color .5s;
+        position:absolute;
+        pointer-events:none;
+        content:"";
+        transform: scale(0);
+        background-color:transparentize($grey, .8);
+        border: 1px solid transparent;
+    }
+    @include hover-focus-active {
+        &:before {
+            transform: scale(1);
+        }
+    }
+    @include focus-active {
+        &:before {
+            border-color: $grey;
         }
     }
 }

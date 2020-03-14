@@ -4,6 +4,12 @@ html,body{
 
 button {
     cursor:pointer;
+    background:none;
+    padding:0;
+    border: none;
+    display:inline-flex;
+    align-items:center;
+    color:inherit;
 }
 
 * {

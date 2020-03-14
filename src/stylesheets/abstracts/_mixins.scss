@@ -33,3 +33,25 @@
     @content;
   }
 }
+
+@mixin focus-active {
+  &:focus,&:active{
+    @content;
+  }
+}
+
+@mixin focus {
+  &:focus,&:active{
+    @content;
+  }
+}
+@mixin active {
+  &:active{
+    @content;
+  }
+}
+@mixin hover {
+  &:hover{
+    @content;
+  }
+}

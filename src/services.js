@@ -430,6 +430,7 @@ export default class JobsService{
         let end = options.page * options.itemsPerPage;
         return {
             done: results.length <= end,
+            totalCount: results.length,
             results: results.slice(start, end)
         };
     }
