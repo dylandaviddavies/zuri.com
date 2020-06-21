@@ -1,0 +1,15 @@
+{
+  "short_name": "zuri",
+  "name": "zuri | The next generation job board",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "126x128"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#4CBD94",
+  "background_color": "#ffffff"
+}

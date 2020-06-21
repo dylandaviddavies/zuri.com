@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/zuri.com/static/css/main.32ef8ddd.chunk.css",
+    "main.js": "/zuri.com/static/js/main.1942002a.chunk.js",
+    "main.js.map": "/zuri.com/static/js/main.1942002a.chunk.js.map",
+    "runtime-main.js": "/zuri.com/static/js/runtime-main.987b2ce2.js",
+    "runtime-main.js.map": "/zuri.com/static/js/runtime-main.987b2ce2.js.map",
+    "static/js/2.0e54157c.chunk.js": "/zuri.com/static/js/2.0e54157c.chunk.js",
+    "static/js/2.0e54157c.chunk.js.map": "/zuri.com/static/js/2.0e54157c.chunk.js.map",
+    "index.html": "/zuri.com/index.html",
+    "precache-manifest.5f346af8af2eab5bbb5b850035820f21.js": "/zuri.com/precache-manifest.5f346af8af2eab5bbb5b850035820f21.js",
+    "service-worker.js": "/zuri.com/service-worker.js",
+    "static/css/main.32ef8ddd.chunk.css.map": "/zuri.com/static/css/main.32ef8ddd.chunk.css.map",
+    "static/js/2.0e54157c.chunk.js.LICENSE.txt": "/zuri.com/static/js/2.0e54157c.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/zuri.com/static/media/logo.605f7429.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.987b2ce2.js",
+    "static/js/2.0e54157c.chunk.js",
+    "static/css/main.32ef8ddd.chunk.css",
+    "static/js/main.1942002a.chunk.js"
+  ]
+}
