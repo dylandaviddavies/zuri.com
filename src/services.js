@@ -1,12 +1,12 @@
 // mock application data
 
-class Employer{
-    constructor(id, img, title){
+class Employer {
+    constructor(id, img, title) {
         this.id = id;
         this.img = img;
         this.title = title;
     }
-    like(q){
+    like(q) {
         return this.title.toLowerCase().includes(q.toLowerCase());
     }
 }
@@ -17,7 +17,7 @@ var facebook = new Employer(
 );
 var google = new Employer(
     "2",
-    "https://www.stickpng.com/assets/images/5847f9cbcef1014c0b5e48c8.png",
+    "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
     "Google"
 );
 var orbis = new Employer(
@@ -61,7 +61,7 @@ var employers = [
     yelp
 ];
 class Job {
-    constructor(id, title, employer, locale, description){
+    constructor(id, title, employer, locale, description) {
         this.id = id;
         this.title = title;
         this.employer = employer;
@@ -418,8 +418,8 @@ var jobs = [
     )
 ];
 
-export default class JobsService{
-    load(id){
+export default class JobsService {
+    load(id) {
         return jobs.find(i => i.id === id);
     }
     fetch(options) {
